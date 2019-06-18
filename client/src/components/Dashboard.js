@@ -4,16 +4,16 @@ const Dashboard = props => {
   return (
     <div>
       <h1>Dashboard</h1>
-      <button onClick={props.handleClick} id="balls">
+      <button onClick={props.handleBall} id="balls">
         Record Ball
       </button>
-      <button onClick={props.handleClick} id="strikes">
+      <button onClick={props.handleStrike} id="strikes">
         Record Strike
       </button>
-      <button onClick={props.handleClick} id="fouls">
+      <button onClick={props.handleFoul} id="fouls">
         Record Foul
       </button>
-      <button onClick={props.handleClick} id="hit">
+      <button onClick={props.handleHit} id="hit">
         Record Hit
       </button>
     </div>

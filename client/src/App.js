@@ -11,29 +11,42 @@ class App extends React.Component {
     hit: 0
   };
 
-  handleClick = event => {
-    const { id } = event.target;
-
-    if (id === "balls" && this.state.balls === 3) {
-      this.setState({ balls: 0, strikes: 0 });
-    } else if (id === "balls" && this.state.balls < 4) {
-      this.setState({ balls: this.state.balls + 1 });
-    } else if (id === "strikes" && this.state.strikes === 2) {
-      this.setState({ balls: 0, strikes: 0 });
-    } else if (id === "strikes" && this.state.strikes < 3) {
+  handleStrike = () => {
+    if (this.state.strikes < 2) {
       this.setState({ strikes: this.state.strikes + 1 });
-    } else if (id === "fouls" && this.state.strikes < 2) {
-      this.setState({ strikes: this.state.strikes + 1 });
-    } else if (id === "hit") {
-      this.setState({ strikes: 0, balls: 0 });
+    } else {
+      this.setState({ balls: 0, strikes: 0 });
     }
+  };
+
+  handleBall = () => {
+    if (this.state.balls < 3) {
+      this.setState({ balls: this.state.balls + 1 });
+    } else {
+      this.setState({ balls: 0, strikes: 0 });
+    }
+  };
+
+  handleFoul = () => {
+    if (this.state.strikes < 2) {
+      this.setState({ strikes: this.state.strikes + 1 });
+    }
+  };
+
+  handleHit = () => {
+    this.setState({ strikes: 0, balls: 0 });
   };
 
   render() {
     return (
       <div className="App">
         <Display count={this.state} />
-        <Dashboard handleClick={this.handleClick} />
+        <Dashboard
+          handleBall={this.handleBall}
+          handleStrike={this.handleStrike}
+          handleFoul={this.handleFoul}
+          handleHit={this.handleHit}
+        />
       </div>
     );
   }
