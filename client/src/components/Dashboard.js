@@ -7,9 +7,15 @@ const Dashboard = props => {
       <button onClick={props.handleClick} id="balls">
         Record Ball
       </button>
-      <button id="strikes">Record Strike</button>
-      <button id="fouls">Record Foul</button>
-      <button id="hit">Record Hit</button>
+      <button onClick={props.handleClick} id="strikes">
+        Record Strike
+      </button>
+      <button onClick={props.handleClick} id="fouls">
+        Record Foul
+      </button>
+      <button onClick={props.handleClick} id="hit">
+        Record Hit
+      </button>
     </div>
   );
 };
