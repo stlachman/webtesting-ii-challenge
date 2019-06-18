@@ -7,8 +7,7 @@ import "./App.css";
 class App extends React.Component {
   state = {
     balls: 0,
-    strikes: 0,
-    hit: 0
+    strikes: 0
   };
 
   handleStrike = () => {

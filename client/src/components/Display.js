@@ -1,13 +1,13 @@
 import React from "react";
+import { handlePlural } from "../utils/index";
 
 const Display = props => {
-  const ballsText = props.count.balls === 1 ? "Ball" : "Balls";
-  const strikesText = props.count.strikes === 1 ? "Strike" : "Strikes";
   return (
     <div>
       <h1>Display</h1>
       <p>
-        {props.count.balls} {ballsText} and {props.count.strikes} {strikesText}
+        {props.count.balls} {handlePlural("Ball", props.count.balls)} and{" "}
+        {props.count.strikes} {handlePlural("Strike", props.count.strikes)}
       </p>
     </div>
   );
