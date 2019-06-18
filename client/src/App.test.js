@@ -10,19 +10,19 @@ it("renders without crashing", () => {
   ReactDOM.unmountComponentAtNode(div);
 });
 
-it("Finds the initial ball count", () => {
-  const { getByText } = render(<App />);
-  getByText(/0 balls/i);
-});
-
-it("Finds the initial strike count", () => {
-  const { getByText } = render(<App />);
-  getByText(/0 strikes/i);
-});
-
 describe("Record Ball Button", () => {
   it("button click updates ball count", () => {
-    // find the button
+    const { getByText } = render(<App />);
+    const button = getByText(/record ball/i);
+
+    // click it
+    fireEvent.click(button);
+    getByText(/1 Ball/i);
+    // confirm that Ball count is updated to 1
+    fireEvent.click(button);
+  });
+
+  it("resets the count to 0 when balls count reaches 4", () => {
     const { getByText } = render(<App />);
     const button = getByText(/record ball/i);
 
@@ -48,12 +48,22 @@ describe("Record Strike Button", () => {
 
     fireEvent.click(button);
     getByText(/1 Strike/i);
-    // confirm that Strikes is updated to 1
+    // confirm that strike is updated to 1
+  });
+
+  it("strikes reset to 0 when strikes reach 3", () => {
+    const { getByText } = render(<App />);
+    const button = getByText(/record strike/i);
+
+    fireEvent.click(button);
+    getByText(/1 Strike/i);
+    // updated to 1
 
     fireEvent.click(button);
     getByText(/2 Strikes/i);
-    // confirm that Strikes is updated to 1
+    // updated to 2
     fireEvent.click(button);
+    // reset to 0
     getByText(/0 Strikes/i);
   });
 });
@@ -91,6 +101,9 @@ describe("Record Foul Button", () => {
 
     // Reset Strike through foul
     const foulButton = getByText(/record foul/i);
+    fireEvent.click(foulButton);
+    getByText(/2 Strikes/i);
+
     fireEvent.click(foulButton);
     getByText(/2 Strikes/i);
 
